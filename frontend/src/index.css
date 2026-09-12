@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-pixel: 'Pixelify Sans', 'Silkscreen', 'Press Start 2P', monospace;
+  --font-pixel-heading: 'Silkscreen', 'Press Start 2P', cursive;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-dark-bg: #000000;
+  --color-dark-card: #1C1C1E;
+  --color-dark-surface: #242428;
+  --color-dark-border: #2E2E36;
+}
+
+:root {
+  background-color: #000000;
+  color: #E2E2E8;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #E2E2E8;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+#root {
+  background-color: #1C1C1E;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Pixel Font Utility Classes */
+.font-pixel {
+  font-family: 'Pixelify Sans', 'Silkscreen', 'Press Start 2P', monospace;
+  letter-spacing: 0.5px;
+}
+
+.font-pixel-heading {
+  font-family: 'Silkscreen', 'Press Start 2P', cursive;
+  letter-spacing: 1px;
+}
+
+.font-pixel-mono {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* Continuous Vinyl Spinning Animation */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-spin-paused {
+  animation-play-state: paused;
+}
+
+/* Custom Minimalist Dark Scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2E2E36;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #40404C;
+}
+
+/* Waveform bar pulsing animation */
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.animate-wave-bar {
+  animation: wave-bar 1.2s ease-in-out infinite;
+}
+
+/* Hide scrollbar but allow scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
