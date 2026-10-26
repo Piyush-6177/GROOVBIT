@@ -2,6 +2,12 @@ const userModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax'
+}
+
 async function registerUser(req,res){
 
     const {username, email, password, role='user'} = req.body
@@ -39,7 +45,7 @@ async function registerUser(req,res){
     },process.env.JWT_SECRET)
 
     // set the token to cookie
-    res.cookie("token", token)
+    res.cookie("token", token, cookieOptions)
 
     res.status(201).json({
         message: "User registered successfully",
@@ -65,7 +71,7 @@ async function loginUser(req,res){
     // no user present with that credential >>> alert
     if(!user){
         return res.status(401).json({
-            message: "Inbvalid Credentials"
+            message: "Invalid Credentials"
         })
     }
 
@@ -82,7 +88,7 @@ async function loginUser(req,res){
         role: user.role
     }, process.env.JWT_SECRET)
     // set the token to cookie
-    res.cookie("token", token)
+    res.cookie("token", token, cookieOptions)
 
     res.status(201).json({
         message: "User logged in successfully",
@@ -97,7 +103,7 @@ async function loginUser(req,res){
 }
 
 async function logoutUser(req,res){
-    res.clearCookie("token")
+    res.clearCookie("token", cookieOptions)
 
     res.status(200).json({message: "User logged out successfully"})
 }

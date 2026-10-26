@@ -1,11 +1,21 @@
 const mongoose = require('mongoose')
 
+// cache the connection so serverless invocations reuse it instead of reconnecting
+let connection = null
+
 async function connectDB(){
 
-    await mongoose.connect(process.env.MONGO_URI)
+    if(!connection){
+        connection = mongoose.connect(process.env.MONGO_URI)
+            .then(()=> console.log("Connected to DB"))
+            .catch((err)=>{
+                connection = null
+                throw err
+            })
+    }
 
-    console.log("Connected to DB")
-    
+    return connection
+
 }
 
 module.exports = connectDB

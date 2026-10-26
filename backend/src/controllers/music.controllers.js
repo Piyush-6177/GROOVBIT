@@ -6,9 +6,8 @@ const {uploadFile} = require('../services/storage.services')
 async function createMusic(req,res){
 
     const token = req.cookies.token
-    
 
-    const {title} = req.body
+    const {title} = req.body 
     const file = req.file
     
     // upload the music file to imagekit 

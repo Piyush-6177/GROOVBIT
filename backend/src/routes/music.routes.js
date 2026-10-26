@@ -3,6 +3,7 @@ const musicController = require('../controllers/music.controllers')
 const router = express.Router()
 const multer = require('multer')
 const authMiddleware = require('../midllewares/auth.middleware')
+
 const upload = multer({
     storage: multer.memoryStorage()
 })
@@ -15,4 +16,4 @@ router.get('/albums', authMiddleware.authUser, musicController.getAllAlbums)
 
 router.get('/albums/:albumId', authMiddleware.authUser, musicController.getAlbumById)
 
-module.exports = router 
+module.exports = router   

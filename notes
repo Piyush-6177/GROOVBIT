@@ -1,0 +1,13 @@
+npm init -y
+npm i express mongoose
+npm i dotenv 
+npm i cookie-parser
+npm i jsonwebtoken
+npm i bcryptjs
+npm install @imagekit/nodejs
+npm i multer
+
+middlewares can :
+- read whatever is in req
+- modify whatever is in req
+- send res
